@@ -1,3 +1,3 @@
 # Later
 
-Simple animation tutorial
+Some simple python tutorials
