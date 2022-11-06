@@ -16,10 +16,13 @@ colors = ['none', 'blue', 'red' , 'orange', 'yellow', 'purple', 'cyan', 'green',
 date_labels_row = [dt.datetime.strptime(entry, '%d/%m/%Y') for entry in df.iloc[:,0]]
 date_labels = [date_label.strftime("%B") + "\n" +  date_label.strftime("%Y") for date_label in date_labels_row]
 
+
 # ready to plot
 fig, ax = plt.subplots()
 fig.suptitle('YouGov Westminster voting intention tracker', fontsize = 20, fontweight = 'bold')
+fig.patch.set_facecolor('#e0e0eb')
 
+ax.set_facecolor('#f5f5f0')
 for count, column in enumerate(df.columns):
     if count != 0:
         ax.plot(df.iloc[:,0], df[column], color = colors[count], label = f'{column}: {df[column].iloc[-1]}%')
@@ -37,8 +40,14 @@ ax.spines['left'].set_visible(False)
 led = dt.datetime.strptime(df.iloc[:,0].tail(1).item(), '%d/%m/%Y')
 le = f'{led.strftime("%d")} {led.strftime("%B")} {led.strftime("%Y")} '
 
-ax.set_title(f'Source: https://yougov.co.uk/     Last entry: {le}\n')
-ax.legend(loc = 'upper center', ncol = 4, shadow = True)
+ax.set_title(f'Last entry: {le}\n')
+
+legend = ax.legend(loc = 'upper center', ncol = 4, shadow = True)
+legend.get_frame().set_facecolor('#ebe0e0')
+
 ax.grid(axis='y')
+
+src="Source: https://yougov.co.uk/"
+plt.figtext(0.5, 0.01, src, wrap=True, horizontalalignment='center', fontsize=12)
 
 plt.show()
