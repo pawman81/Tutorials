@@ -34,8 +34,10 @@ ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['left'].set_visible(False)
 
+led = dt.datetime.strptime(df.iloc[:,0].tail(1).item(), '%d/%m/%Y')
+le = f'{led.strftime("%d")} {led.strftime("%B")} {led.strftime("%Y")} '
 
-ax.set_title('Source: https://yougov.co.uk/\n')
+ax.set_title(f'Source: https://yougov.co.uk/     Last entry: {le}\n')
 ax.legend(loc = 'upper center', ncol = 4, shadow = True)
 ax.grid(axis='y')
 
